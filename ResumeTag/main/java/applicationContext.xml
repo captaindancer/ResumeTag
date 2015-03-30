@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+           http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+    <bean id="some1" class="spring.xml.test.SomeTest">
+        <property name="name" value="tom"/>
+    </bean>
+    <bean id="some2" class="spring.xml.test.SomeTest">
+    	<property name="name" value="joy"/>
+    </bean>
+    <bean name="someBean" class="spring.xml.test.SomeBeanInjection">
+    	<property name="someTest" ref="some1"/>
+    	<property name="stringArray">
+    		<list>
+    			<value>Hello</value>
+    			<value>Welcome</value>
+    		</list>
+    	</property>
+    	<property name="someObjArray">
+    		<list>
+    			<ref bean="some1"/>
+    			<ref local="some2"/>
+    		</list>
+    	</property>
+    	<property name="someList">
+    		<list>
+    			<value>hehe</value>
+    			<ref bean="some1"/>
+    			<ref bean="some2"/>
+    		</list>
+    	</property>
+    	<property name="someMap">
+    		<map>
+    			<entry key="MapTest">
+    			<value>Hello!Tom</value>
+    			</entry>
+    			<entry key="someKey">
+    				<ref bean="some1"/>
+    			</entry>
+    		</map>
+    	</property>
+    </bean>
+</beans>

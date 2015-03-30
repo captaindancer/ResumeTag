@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<configuration>  
+    <appenders>  
+        <RollingFile name="resumeFile" fileName="logs/resume.log"   
+            filePattern="logs/$${date:yyyy-MM}/resume-%d{MM-dd-yyyy}-%i.log">  
+            <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss} [%t] [%-5level] %class{36} (%M %L) - %msg%xEx%n" />  
+            <SizeBasedTriggeringPolicy size="10MB" />  
+        </RollingFile>  
+          
+          
+        <RollingFile name="outFile" fileName="logs/utils.log"   
+            filePattern="logs/$${date:yyyy-MM}/utils-%d{MM-dd-yyyy}-%i.log">  
+            <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss} [%t] [%-5level] %class{36} (%M %L) - %msg%xEx%n" />  
+            <SizeBasedTriggeringPolicy size="10MB" />  
+        </RollingFile>
+        
+        <RollingFile name="alertFile" fileName="logs/alert.log"   
+            filePattern="logs/$${date:yyyy-MM}/alert-%d{MM-dd-yyyy}-%i.log">  
+            <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss} [%t] [%-5level] %class{36} (%M %L) - %msg%xEx%n" />  
+            <SizeBasedTriggeringPolicy size="10MB" />  
+        </RollingFile>
+        
+         <RollingFile name="modelFile" fileName="logs/model.log"   
+            filePattern="logs/$${date:yyyy-MM}/model-%d{MM-dd-yyyy}-%i.log">  
+            <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss} [%t] [%-5level] %class{36} (%M %L) - %msg%xEx%n" />  
+            <SizeBasedTriggeringPolicy size="10MB" />  
+        </RollingFile>
+        
+        <Console name="consolePrint" target="SYSTEM_OUT">  
+            <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss} [%t] [%-5level] %class{36} (%M %L) - %msg%xEx%n" />  
+        </Console>  
+    </appenders>  
+    <loggers>  
+        <root level="info">  
+            <appender-ref ref="consolePrint"/>
+            <appender-ref ref="resumeFile"/>  
+        </root>
+        <logger name="com.wind.data.DatabaseOperation" level="info" additivity="false">
+        	<appender-ref ref="resumeFile"/>
+        </logger>
+        <logger name="com.wind.data.utils" level="info" additivity="false">
+        	<appender-ref ref="outFile"/>
+        </logger>  
+        <logger name="com.wind.dao.impl" level="info" additivity="false">
+        	<appender-ref ref="alertFile"/>
+        </logger>
+        <logger name="com.wind.service" level="info" additivity="false">
+        	<appender-ref ref="modelFile"/>
+        </logger>
+    </loggers>  
+</configuration>   
